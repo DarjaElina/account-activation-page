@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import useActivationToken from '../hooks/useActivationToken';
+import Spinner from './Spinner';
 
 type ActivationParams = {
   token: string;
@@ -17,12 +18,14 @@ type ActivationParams = {
 
 const schema = yup
   .object({
-    password: yup.string().password().required(),
-    passwordConfirmation: yup
+    password: yup
       .string()
-      .label('confirm password')
-      .required()
-      .oneOf([yup.ref('password'), null], 'Passwords must match'),
+      .required('Password is required')
+      .min(6, 'Password must be at least 6 characters'),
+    confirmPassword: yup
+      .string()
+      .required('Confirm Password is required')
+      .oneOf([yup.ref('password')], 'Passwords must match'),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
@@ -31,6 +34,7 @@ const ActivationForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -42,8 +46,9 @@ const ActivationForm = () => {
     isActive,
     loading: tokenLoading,
     error,
-  } = useActivationToken({ activationToken: token });
+  } = useActivationToken({ activationToken: token || '' });
   const [userMessage, setUserMessage] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const onSubmit = async (data: FormData) => {
     try {
       if (!token) {
@@ -56,10 +61,12 @@ const ActivationForm = () => {
       });
       if (response?.activateUser.message)
         setUserMessage(response.activateUser.message);
+      setIsSubmitted(true);
     } catch (error: unknown) {
       if (error instanceof ApolloError) {
         const message =
           error.graphQLErrors?.[0]?.message || 'Something went wrong!';
+        reset();
         setUserMessage(message);
         setTimeout(() => {
           setUserMessage(null);
@@ -67,9 +74,7 @@ const ActivationForm = () => {
       }
     }
   };
-  if (tokenLoading || activationLoading) {
-    return <Text>Loading...</Text>;
-  }
+  if (tokenLoading || activationLoading) return <Spinner />;
   if (error) {
     return (
       <>
@@ -83,27 +88,30 @@ const ActivationForm = () => {
       {isActive ? (
         <>
           <Text>{userMessage}</Text>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Text>You are almost there!</Text>
-            <Text>
-              Please enter your password to complete account activation process
-            </Text>
-            <Input
-              placeholder="Password"
-              type="password"
-              {...register('password')}
-            />
-            <ErrorText>{errors.password?.message}</ErrorText>
+          {!isSubmitted && (
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <Text>You are almost there!</Text>
+              <Text>
+                Please enter your password to complete account activation
+                process
+              </Text>
+              <Input
+                placeholder="Password"
+                type="password"
+                {...register('password')}
+              />
+              <ErrorText>{errors.password?.message}</ErrorText>
 
-            <Input
-              placeholder="Confirm password"
-              type="password"
-              {...register('passwordConfirmation')}
-            />
-            <ErrorText>{errors.passwordConfirmation?.message}</ErrorText>
+              <Input
+                placeholder="Confirm password"
+                type="password"
+                {...register('confirmPassword')}
+              />
+              <ErrorText>{errors.confirmPassword?.message}</ErrorText>
 
-            <Input $submit type="submit" />
-          </Form>
+              <Input $submit type="submit" />
+            </Form>
+          )}
         </>
       ) : (
         <>
@@ -111,6 +119,18 @@ const ActivationForm = () => {
           <Text>Token invalid or expired</Text>{' '}
           <Link to="/">Resend activation email</Link>
         </>
+      )}
+      {isSubmitted && (
+     <Text>
+     You can log in
+      <a
+        href="https://mobile-frontend--6g28mexz3f.expo.app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        here
+      </a>
+   </Text>
       )}
     </>
   );
