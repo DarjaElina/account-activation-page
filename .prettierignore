@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+dist
+
+# Ignore generated files
+codegen.ts
+
+# Ignore lock and configuration files
+package-lock.json
+tsconfig.json
+eslint.config.js

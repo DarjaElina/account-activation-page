@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(251, 226, 201);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Comfortaa', sans-serif;
+  color: #252422;
+}
+
+a {
+  margin: 0 2.5rem 1.2rem 2rem;
+  font-size: 1.2rem;
+  color: #eb5e28;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b33300;
+}
