@@ -7,6 +7,7 @@ import { Form, Input, Text, ErrorText } from './StyledFormComponents';
 import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
 import Spinner from './Spinner';
+import { Link } from 'react-router-dom';
 const schema = yup
   .object({
     firstName: yup.string().required('This field is required'),
@@ -80,6 +81,7 @@ const RequestSignupForm = () => {
           <Input $submit type="submit" />
         </Form>
       )}
+      {isSubmitted && <Link to="/">Resend activation email</Link>}
     </>
   );
 };
