@@ -122,7 +122,7 @@ const ActivationForm = () => {
       )}
       {isSubmitted && (
      <CenteredText>
-      You can log in
+      You can log in 
       <a
           href="https://mobile-frontend--6g28mexz3f.expo.app"
           target="_blank"
