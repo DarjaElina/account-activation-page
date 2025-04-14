@@ -2,15 +2,15 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
-import useActivateUser from '../hooks/useActivateUser';
+import useActivateUser from '../../hooks/useActivateUser';
 import { useParams } from 'react-router-dom';
 YupPassword(yup);
-import { Form, Input, Text, ErrorText } from './StyledFormComponents';
+import { Form, Input, Text, ErrorText } from '../StyledFormComponents';
 import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import useActivationToken from '../hooks/useActivationToken';
-import Spinner from './Spinner';
+import useActivationToken from '../../hooks/useActivationToken';
+import Spinner from '../Spinner';
 
 type ActivationParams = {
   token: string;

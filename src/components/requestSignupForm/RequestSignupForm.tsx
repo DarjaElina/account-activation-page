@@ -1,21 +1,21 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import useSignup from '../hooks/useSignup';
-import { UserStatus, UserRole } from '../../__generated__/graphql';
-import { Form, Input, Text, ErrorText } from './StyledFormComponents';
+import useSignup from '../../hooks/useSignup';
+import { UserStatus, UserRole } from '../../../__generated__/graphql';
+import { Form, Input, Text, ErrorText } from './../StyledFormComponents';
 import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
-import Spinner from './Spinner';
+import Spinner from './../Spinner';
 import { Link } from 'react-router-dom';
 const schema = yup
   .object({
-    firstName: yup.string().required('This field is required'),
-    lastName: yup.string().required('This field is required'),
+    firstName: yup.string().required('First name is required'),
+    lastName: yup.string().required('Last name is required'),
     email: yup
       .string()
       .email('Please enter valid email address')
-      .required('This field is required'),
+      .required('Email is required'),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
@@ -78,7 +78,7 @@ const RequestSignupForm = () => {
           <Input placeholder="Email" {...register('email')} />
           <ErrorText>{errors.email?.message}</ErrorText>
 
-          <Input $submit type="submit" />
+          <Input $submit type="submit" data-testid="submitBtn" />
         </Form>
       )}
       {isSubmitted && <Link to="/">Resend activation email</Link>}
