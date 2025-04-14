@@ -5,7 +5,7 @@ import YupPassword from 'yup-password';
 import useActivateUser from '../../hooks/useActivateUser';
 import { useParams } from 'react-router-dom';
 YupPassword(yup);
-import { Form, Input, Text, ErrorText, CenteredText, LinkText } from '../StyledFormComponents';
+import { Form, Input, Text, ErrorText, CenteredText } from '../StyledFormComponents';
 import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
 import { Link } from 'react-router-dom';
@@ -90,7 +90,7 @@ const ActivationForm = () => {
           <CenteredText>{userMessage}</CenteredText>
           {!isSubmitted && (
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <Text>You are almost there! ✨</Text>
+              <CenteredText>You are almost there! ✨</CenteredText>
               <Text>
                 Please enter your password to complete account activation
                 process
@@ -122,7 +122,7 @@ const ActivationForm = () => {
       )}
       {isSubmitted && (
      <CenteredText>
-      You can log in <LinkText>
+      You can log in
       <a
           href="https://mobile-frontend--6g28mexz3f.expo.app"
           target="_blank"
@@ -130,7 +130,6 @@ const ActivationForm = () => {
           data-testid="loginLink"
         >here
         </a>
-     </LinkText>
    </CenteredText>
       )}
     </>

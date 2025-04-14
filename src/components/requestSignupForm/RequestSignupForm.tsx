@@ -42,7 +42,7 @@ const RequestSignupForm = () => {
         departmentId: '62acdf6e-d19a-45bd-b72a-ae8e3ad308e2',
         status: UserStatus.Pending,
       });
-      setUserMessage('Link sent successfully, please check your mailbox ✨');
+      setUserMessage('Link sent successfully, please check your mailbox ✨ (and spam folder 💌)');
       setIsSubmitted(true);
     } catch (error: unknown) {
       if (error instanceof ApolloError) {

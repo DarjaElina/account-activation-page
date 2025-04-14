@@ -105,7 +105,7 @@ describe('RequestSignupForm', () => {
     await user.type(await findByPlaceholderText('Last name'), 'Smith');
     await user.type(await findByPlaceholderText('Email'), 'anna.smith@example.com');
     await user.click(await findByTestId('submitBtn'));
-    expect(await findByText('Link sent successfully, please check your mailbox :)')).toBeDefined();
+    expect(await findByText('Link sent successfully, please check your mailbox ✨ (and spam folder 💌)')).toBeDefined();
     expect(await findByText('Resend activation email')).toBeDefined();
   })
 
