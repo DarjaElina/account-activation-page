@@ -5,7 +5,7 @@ import YupPassword from 'yup-password';
 import useActivateUser from '../../hooks/useActivateUser';
 import { useParams } from 'react-router-dom';
 YupPassword(yup);
-import { Form, Input, Text, ErrorText } from '../StyledFormComponents';
+import { Form, Input, Text, ErrorText, CenteredText, LinkText } from '../StyledFormComponents';
 import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
 import { Link } from 'react-router-dom';
@@ -87,10 +87,10 @@ const ActivationForm = () => {
     <>
       {isActive ? (
         <>
-          <Text>{userMessage}</Text>
+          <CenteredText>{userMessage}</CenteredText>
           {!isSubmitted && (
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <Text>You are almost there!</Text>
+              <Text>You are almost there! ✨</Text>
               <Text>
                 Please enter your password to complete account activation
                 process
@@ -116,20 +116,22 @@ const ActivationForm = () => {
       ) : (
         <>
           {' '}
-          <Text>Token invalid or expired</Text>{' '}
+          <CenteredText>Token invalid or expired</CenteredText>{' '}
           <Link to="/">Resend activation email</Link>
         </>
       )}
       {isSubmitted && (
-     <Text>
-     You can log in <a
-        href="https://mobile-frontend--6g28mexz3f.expo.app"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="loginLink"
-      >here
-      </a>
-   </Text>
+     <CenteredText>
+      You can log in <LinkText>
+      <a
+          href="https://mobile-frontend--6g28mexz3f.expo.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="loginLink"
+        >here
+        </a>
+     </LinkText>
+   </CenteredText>
       )}
     </>
   );
