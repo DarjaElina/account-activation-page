@@ -3,11 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import useSignup from '../../hooks/useSignup';
 import { UserStatus, UserRole } from '../../../__generated__/graphql';
-import { Form, Input, Text, ErrorText } from './../StyledFormComponents';
+import { Form, Input, Text, ErrorText, LinkText, CenteredText } from './../StyledFormComponents';
 import { useState } from 'react';
 import { ApolloError } from '@apollo/client';
 import Spinner from './../Spinner';
-import { Link } from 'react-router-dom';
 const schema = yup
   .object({
     firstName: yup.string().required('First name is required'),
@@ -43,11 +42,8 @@ const RequestSignupForm = () => {
         departmentId: '62acdf6e-d19a-45bd-b72a-ae8e3ad308e2',
         status: UserStatus.Pending,
       });
-      setUserMessage('Link sent successfully, please check your mailbox :)');
+      setUserMessage('Link sent successfully, please check your mailbox ✨');
       setIsSubmitted(true);
-      setTimeout(() => {
-        setUserMessage(null);
-      }, 5000);
     } catch (error: unknown) {
       if (error instanceof ApolloError) {
         const message =
@@ -63,7 +59,7 @@ const RequestSignupForm = () => {
   if (loading) return <Spinner />;
   return (
     <>
-      <Text>{userMessage}</Text>
+      <CenteredText>{userMessage}</CenteredText>
       {!isSubmitted && (
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Text>
@@ -81,7 +77,7 @@ const RequestSignupForm = () => {
           <Input $submit type="submit" data-testid="submitBtn" />
         </Form>
       )}
-      {isSubmitted && <Link to="/">Resend activation email</Link>}
+      {isSubmitted && <LinkText onClick={() => window.location.reload()}>Resend activation email</LinkText>}
     </>
   );
 };
