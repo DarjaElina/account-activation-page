@@ -109,7 +109,7 @@ const ActivationForm = () => {
               />
               <ErrorText>{errors.confirmPassword?.message}</ErrorText>
 
-              <Input $submit type="submit" />
+              <Input $submit type="submit" data-testid="activationFormSubmitBtn" />
             </Form>
           )}
         </>
@@ -122,11 +122,11 @@ const ActivationForm = () => {
       )}
       {isSubmitted && (
      <Text>
-     You can log in 
-      <a
+     You can log in <a
         href="https://mobile-frontend--6g28mexz3f.expo.app"
         target="_blank"
         rel="noopener noreferrer"
+        data-testid="loginLink"
       >here
       </a>
    </Text>

@@ -1,4 +1,4 @@
-import {render, screen } from '@testing-library/react';
+import {render } from '@testing-library/react';
 import RequestSignupForm from './RequestSignupForm';
 import { MockedProvider } from "@apollo/client/testing";
 import { SIGNUP_REQUEST } from '../../graphql/mutations';
@@ -73,9 +73,9 @@ describe('RequestSignupForm', () => {
     )
 
     await user.click(await findByTestId('submitBtn'));
-    expect(await findByText('First name is required'));
-    expect(await findByText('Last name is required'));
-    expect(await findByText('Email is required'));
+    expect(await findByText('First name is required')).toBeDefined();
+    expect(await findByText('Last name is required')).toBeDefined();
+    expect(await findByText('Email is required')).toBeDefined();
   })
 
   it('shows error message for incorrect email format', async () => {
@@ -107,7 +107,6 @@ describe('RequestSignupForm', () => {
     await user.click(await findByTestId('submitBtn'));
     expect(await findByText('Link sent successfully, please check your mailbox :)')).toBeDefined();
     expect(await findByText('Resend activation email')).toBeDefined();
-    screen.debug();
   })
 
   it('shows a generic error message on server failure', async () => {
