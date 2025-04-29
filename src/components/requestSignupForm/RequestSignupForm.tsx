@@ -74,7 +74,7 @@ const RequestSignupForm = () => {
           <Input placeholder="Email" {...register('email')} />
           <ErrorText>{errors.email?.message}</ErrorText>
 
-          <Input $submit type="submit" data-testid="submitBtn" />
+          <Input disabled={loading} $submit type="submit" data-testid="submitBtn" />
         </Form>
       )}
       {isSubmitted && <LinkText onClick={() => window.location.reload()}>Resend activation email</LinkText>}

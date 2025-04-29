@@ -109,7 +109,7 @@ const ActivationForm = () => {
               />
               <ErrorText>{errors.confirmPassword?.message}</ErrorText>
 
-              <Input $submit type="submit" data-testid="activationFormSubmitBtn" />
+              <Input disabled={activationLoading} $submit type="submit" data-testid="activationFormSubmitBtn" />
             </Form>
           )}
         </>
