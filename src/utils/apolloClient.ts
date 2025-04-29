@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://winter-water-9193.fly.dev',
+  uri: import.meta.env.VITE_BACKEND_URL,
   cache: new InMemoryCache(),
 });
 
