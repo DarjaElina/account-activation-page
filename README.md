@@ -1,5 +1,21 @@
-## Account Activation Page
+## 💌 Account Activation Page
 
-This is a simple account activation flow implemented as part of a final project for Full Stack Open Course by Helsinki University.
+This is a standalone frontend for the account activation flow, built as part of the final project for the [Full Stack Open course](https://fullstackopen.com/en/) by the [University of Helsinki](https://www.helsinki.fi/en).
 
-This is a frontend part of application build with React, Typescript and Vite. 
+It’s a lightweight React app that allows users to activate their account by entering their email, receiving a generated username, and setting a password.
+
+### 🛠️ Tech Stack
+
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vitest](https://vitest.dev/) for testing
+- [Vite](https://vite.dev/) as the build tool
+- [Apollo Client](https://www.npmjs.com/package/@apollo/client) for GraphQL API communication
+- [Yup](https://www.npmjs.com/package/yup) + [React Hook Form](https://react-hook-form.com/) for form handling & validation
+- [styled-components](https://styled-components.com/) for styling
+- Deployed with [Vercel](https://vercel.com/)
+
+### 🔗 Related Repositories
+
+- 🔙 Backend repo: [room-reservation-app-backend](https://github.com/DarjaElina/room-reservation-app-backend)
+- 🎻 Main frontend repo: [room-reservation-app](https://github.com/DarjaElina/room-reservation-app)
