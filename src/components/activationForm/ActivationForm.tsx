@@ -124,7 +124,7 @@ const ActivationForm = () => {
      <CenteredText>
       You can log in
       <a
-          href="https://mobile-frontend--6g28mexz3f.expo.app"
+          href="https://mobile-frontend.expo.app"
           target="_blank"
           rel="noopener noreferrer"
           data-testid="loginLink"
