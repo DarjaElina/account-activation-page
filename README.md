@@ -14,8 +14,3 @@ It’s a lightweight React app that allows users to activate their account by en
 - [Yup](https://www.npmjs.com/package/yup) + [React Hook Form](https://react-hook-form.com/) for form handling & validation
 - [styled-components](https://styled-components.com/) for styling
 - Deployed with [Vercel](https://vercel.com/)
-
-### 🔗 Related Repositories
-
-- 🔙 Backend repo: [room-reservation-app-backend](https://github.com/DarjaElina/room-reservation-app-backend)
-- 🎻 Main frontend repo: [room-reservation-app](https://github.com/DarjaElina/room-reservation-app)
